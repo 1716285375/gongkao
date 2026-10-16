@@ -2322,5 +2322,35 @@ if (panels.length > 1) {
 })();
 </script>
 <div id="kb-nav" style="position:fixed;top:0;left:0;right:0;z-index:9999;display:flex;align-items:center;gap:8px;padding:6px 16px;background:#1e293b;color:#e2e8f0;font-size:13px;font-family:system-ui;box-shadow:0 2px 8px rgba(0,0,0,.15);"><a href="/" style="color:#818cf8;text-decoration:none;display:flex;align-items:center;gap:4px;font-weight:500;">Home</a><span style="color:#475569;">/</span><span id="kb-nav-title" style="color:#94a3b8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></span><div style="margin-left:auto;"><button onclick="history.back()" style="background:#334155;color:#e2e8f0;border:none;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px;">Back</button></div></div><script>(function(){var n=decodeURIComponent(location.pathname.split("/").pop().replace(".html",""));document.getElementById("kb-nav-title").textContent=n;document.body.style.paddingTop="36px";})();</script>
+<div id="kb-nav" style="position:fixed;bottom:24px;right:24px;z-index:9999;font-family:system-ui,sans-serif;">
+  <button id="kb-fab" onclick="document.getElementById('kb-nav').classList.toggle('open')" style="width:48px;height:48px;border-radius:50%;background:#16181d;color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 12px rgba(0,0,0,.2);transition:transform .2s;font-size:18px;">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div id="kb-menu" style="position:absolute;bottom:56px;right:0;display:flex;flex-direction:column;gap:8px;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;transform:translateY(8px);">
+    <a href="/" title="知识库首页" style="display:flex;align-items:center;gap:8px;background:#16181d;color:#fff;padding:8px 14px;text-decoration:none;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.15);">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+      首页
+    </a>
+    <button onclick="history.back()" title="返回上一页" style="display:flex;align-items:center;gap:8px;background:#16181d;color:#fff;padding:8px 14px;border:none;cursor:pointer;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.15);">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      返回上一页
+    </button>
+  </div>
+</div>
+<style>
+  #kb-nav.open #kb-menu { opacity:1; pointer-events:auto; transform:translateY(0); }
+  #kb-nav.open #kb-fab { transform:rotate(90deg); }
+  #kb-menu a:hover, #kb-menu button:hover { background:#1d5fbf !important; }
+</style>
+<script>
+(function(){
+  var name = decodeURIComponent(location.pathname.split('/').pop().replace('.html',''));
+  var tip = document.createElement('div');
+  tip.textContent = name;
+  tip.style.cssText = 'position:fixed;bottom:82px;right:24px;z-index:9998;background:#16181d;color:#fff;padding:4px 10px;font-size:11px;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;box-shadow:0 1px 4px rgba(0,0,0,.1);';
+  document.body.appendChild(tip);
+  setTimeout(function(){ tip.style.transition='opacity .3s'; tip.style.opacity='0'; setTimeout(function(){ tip.remove(); },2000); },3000);
+})();
+</script>
 </body>
 </html>
